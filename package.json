@@ -1,0 +1,51 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Performance-optimized portfolio website",
+  "main": "index.html",
+  "scripts": {
+    "build": "npm run minify-css && npm run minify-js && npm run optimize-images",
+    "minify-css": "cssnano styles/main.css styles/main.min.css --no-map",
+    "minify-js": "terser js/main.js --compress --mangle --output js/main.min.js",
+    "optimize-images": "imagemin assets/*.{svg,png,jpg,jpeg} --out-dir=assets/optimized",
+    "serve": "python3 -m http.server 8000 || python -m SimpleHTTPServer 8000",
+    "lighthouse": "lighthouse http://localhost:8000 --output html --output-path ./lighthouse-report.html",
+    "analyze": "bundlesize",
+    "critical-css": "critical index.html --base . --inline --minify > critical.css"
+  },
+  "bundlesize": [
+    {
+      "path": "styles/main.css",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "js/main.js",
+      "maxSize": "15 kB"
+    }
+  ],
+  "devDependencies": {
+    "cssnano": "^5.1.15",
+    "terser": "^5.16.6",
+    "imagemin": "^8.0.1",
+    "imagemin-svgo": "^10.0.1",
+    "lighthouse": "^10.0.1",
+    "bundlesize": "^0.18.1",
+    "critical": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bawanmohammed/bawanmohammed.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "performance",
+    "optimization",
+    "web-vitals",
+    "lighthouse"
+  ],
+  "author": "Bawan Mohammed",
+  "license": "MIT"
+}
